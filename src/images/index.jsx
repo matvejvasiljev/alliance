@@ -1,7 +1,9 @@
 import dancers from "./dancers.png";
+import larisa from "./larisa.png";
+import newsImage from "./newsImage.png";
 
 const images = {
-    dancers,
+    dancers, larisa, newsImage
 };
 
 export default images;
