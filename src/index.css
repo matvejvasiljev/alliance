@@ -281,4 +281,37 @@ body {
 }
 .social__right p {
   line-height: 24px;
+}
+
+.footer iframe {
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .header .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .header__left_link {
+    display: none;
+  }
+  .main .info {
+    position: relative;
+  }
+  .main .info p {
+    width: 90%;
+    margin-left: 5%;
+    padding-bottom: 150px;
+  }
+  .main .info img {
+    position: absolute;
+    top: 75px;
+    left: 10%;
+    width: 80%;
+    opacity: 25%;
+  }
+  .main .news__slider_slide {
+    width: 350px;
+  }
 }/*# sourceMappingURL=index.css.map */

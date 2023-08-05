@@ -294,10 +294,6 @@ body {
     }
 }
 
-// .footer {
-
-// }
-
 .social {
     background-color: #ccc;
     display: flex;
@@ -342,4 +338,49 @@ body {
     }
 }
 
-// Поменять адрес, номер телефона и сделать адаптивную версию в фигме
+.footer iframe {
+    width: 100%;
+}
+
+@media (max-width: 600px) {
+    .header {
+        .container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        &__left {
+            &_link {
+                display: none;
+            }
+        }
+    }
+
+    .main {
+        .info {
+            position: relative;
+
+            p {
+                width: 90%;
+                margin-left: 5%;
+                padding-bottom: 150px;
+            }
+
+            img {
+                position: absolute;
+                top: 75px;
+                left: 10%;
+
+                width: 80%;
+                opacity: 25%;
+            }
+        }
+
+        .news__slider_slide{
+            width: 350px;
+        }
+    }
+}
+
+// Поменять адрес, номер телефона

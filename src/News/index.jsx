@@ -3,6 +3,8 @@ import { useState } from "react";
 import { IoChevronBack, IoChevronForward, IoClose } from "react-icons/io5";
 
 export default function News() {
+  const [mobile, setMobile] = useState(window.matchMedia("(max-width: 600px)").matches)
+
   const [sliderPos, setSliderPos] = useState(0)
   const [sliderTransition, setSliderTransition] = useState(0)
   const [sliderBlocked, setSliderBlocked] = useState(false)
@@ -19,10 +21,10 @@ export default function News() {
       setSliderTransition("0.5s")
       setSliderBlocked(true)
       if (dir === "left") {
-        setSliderPos(sliderPos + 700)
+        setSliderPos( mobile ? (sliderPos + 350) : (sliderPos + 700))
       }
       else {
-        setSliderPos(sliderPos - 700)
+        setSliderPos( mobile ? (sliderPos - 350) : (sliderPos - 700))
       }
       setTimeout(() => {
         if (dir === "left") {
@@ -53,44 +55,77 @@ export default function News() {
         <div className="news__container">
           <IoChevronBack onClick={() => handleSlider("left")} className="news__arrow-left"></IoChevronBack>
 
-          <div className="news__slider" style={{ transform: "translateX(" + sliderPos + "px)", transition: sliderTransition }}>
+          {mobile ?
 
-            <div className="news__slider_slide">
-              <div className="news__left">
-                <img src={images.newsImage} alt="" />
-                <h4>{titles[(sliderCount + 0) % titles.length]}</h4>
+            <div className="news__slider" style={{ transform: "translateX(" + sliderPos + "px)", transition: sliderTransition }}>
+
+              <div className="news__slider_slide">
+                <div className="news__left">
+                  <img src={images.newsImage} alt="" />
+                  <h4>{titles[(sliderCount + 0) % titles.length]}</h4>
+                </div>
               </div>
-              <div className="news__right">
-                <img src={images.newsImage} alt="" />
-                <h4>{titles[(sliderCount + 1) % titles.length]}</h4>
+
+              <div className="news__slider_slide">
+                <div className="news__left" onClick={() => setPopupMode(true)}>
+                  <img src={images.newsImage} alt="" />
+                  <h4>{titles[(sliderCount + 2) % titles.length]}</h4>
+                </div>
+              </div>
+
+              <div className="news__slider_slide">
+                <div className="news__left">
+                  <img src={images.newsImage} alt="" />
+                  <h4>{titles[(sliderCount + 4) % titles.length]}</h4>
+                </div>
               </div>
             </div>
 
-            <div className="news__slider_slide">
-              <div className="news__left" onClick={() => setPopupMode(true)}>
-                <img src={images.newsImage} alt="" />
-                <h4>{titles[(sliderCount + 2) % titles.length]}</h4>
+            :
+
+            <div className="news__slider" style={{ transform: "translateX(" + sliderPos + "px)", transition: sliderTransition }}>
+
+
+              <div className="news__slider_slide">
+                <div className="news__left">
+                  <img src={images.newsImage} alt="" />
+                  <h4>{titles[(sliderCount + 0) % titles.length]}</h4>
+                </div>
+                <div className="news__right">
+                  <img src={images.newsImage} alt="" />
+                  <h4>{titles[(sliderCount + 1) % titles.length]}</h4>
+                </div>
               </div>
-              <div className="news__right" onClick={() => setPopupMode(true)}>
-                <img src={images.newsImage} alt="" />
-                <h4>{titles[(sliderCount + 3) % titles.length]}</h4>
+
+              <div className="news__slider_slide">
+                <div className="news__left" onClick={() => setPopupMode(true)}>
+                  <img src={images.newsImage} alt="" />
+                  <h4>{titles[(sliderCount + 2) % titles.length]}</h4>
+                </div>
+                <div className="news__right" onClick={() => setPopupMode(true)}>
+                  <img src={images.newsImage} alt="" />
+                  <h4>{titles[(sliderCount + 3) % titles.length]}</h4>
+                </div>
+              </div>
+
+              <div className="news__slider_slide">
+                <div className="news__left">
+                  <img src={images.newsImage} alt="" />
+                  <h4>{titles[(sliderCount + 4) % titles.length]}</h4>
+                </div>
+                <div className="news__right">
+                  <img src={images.newsImage} alt="" />
+                  <h4>{titles[(sliderCount + 5) % titles.length]}</h4>
+                </div>
               </div>
             </div>
 
-            <div className="news__slider_slide">
-              <div className="news__left">
-                <img src={images.newsImage} alt="" />
-                <h4>{titles[(sliderCount + 4) % titles.length]}</h4>
-              </div>
-              <div className="news__right">
-                <img src={images.newsImage} alt="" />
-                <h4>{titles[(sliderCount + 5) % titles.length]}</h4>
-              </div>
-            </div>
-          </div>
+          }
+
           <IoChevronForward onClick={() => handleSlider("right")} className="news__arrow-right"></IoChevronForward>
         </div>
       </div>
+
       {popupMode
         &&
         <div className="newsPopup">
