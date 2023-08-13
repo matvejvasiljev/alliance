@@ -1,4 +1,4 @@
-import images from "../images";
+import images from "../../images";
 import { useEffect, useState } from "react";
 import { IoChevronBack, IoChevronForward, IoClose } from "react-icons/io5";
 

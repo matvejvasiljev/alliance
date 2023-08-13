@@ -38,17 +38,17 @@ body {
   background-color: rgba(255, 255, 255, 0.25);
 }
 .header__left .logo {
-  background-image: url(../src/logo.jpg);
+  background-image: url(../src/images/logo.jpg);
 }
 .header__right {
   flex-direction: row;
   display: flex;
 }
 .header__right_VK {
-  background-image: url(../src/VK.png);
+  background-image: url(../src/images/VK.png);
 }
 .header__right_talant {
-  background-image: url(../src/Talant.png);
+  background-image: url(../src/images/Talant.png);
 }
 .header .logo {
   margin: 10px;
@@ -255,16 +255,16 @@ body {
   margin-right: 0;
   display: inline-block;
   background-size: contain;
-  background-image: url(../src/logo.jpg);
+  background-image: url(../src/images/logo.jpg);
   border-radius: 30px;
   box-sizing: border-box;
 }
 .social__left .VK {
-  background-image: url(../src/VK.png);
+  background-image: url(../src/images/VK.png);
   border-radius: 0;
 }
 .social__left .talant {
-  background-image: url(../src/Talant.png);
+  background-image: url(../src/images/Talant.png);
   border-radius: 0;
 }
 .social__right {
@@ -308,4 +308,4 @@ body {
   .main .news__slider_slide {
     width: 350px;
   }
-}/*# sourceMappingURL=index.css.map */
+}
