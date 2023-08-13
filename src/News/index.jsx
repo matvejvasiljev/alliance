@@ -1,9 +1,19 @@
 import images from "../images";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoChevronBack, IoChevronForward, IoClose } from "react-icons/io5";
 
 export default function News() {
   const [mobile, setMobile] = useState(window.matchMedia("(max-width: 600px)").matches)
+  const [news, setNews] = useState([])
+  useEffect(() => {
+    fetch('https://api.alliance-dance-club.ru/news')
+      .then(response => response.json())
+      .then(commits => {
+        setNews(commits);
+        console.log(commits);
+      })
+  }, [])
+
 
   const [sliderPos, setSliderPos] = useState(0)
   const [sliderTransition, setSliderTransition] = useState(0)
@@ -15,16 +25,15 @@ export default function News() {
   const titles = ["Lorem ipsum 0", "Lorem ipsum 1", "Lorem ipsum 2", "Lorem ipsum 3", "Lorem ipsum 4", "Lorem ipsum 5",]
 
   function handleSlider(dir) {
-    console.log(popupMode);
     if (sliderBlocked === false) {
       let sliderCounter = sliderCount
       setSliderTransition("0.5s")
       setSliderBlocked(true)
       if (dir === "left") {
-        setSliderPos( mobile ? (sliderPos + 350) : (sliderPos + 700))
+        setSliderPos(mobile ? (sliderPos + 350) : (sliderPos + 700))
       }
       else {
-        setSliderPos( mobile ? (sliderPos - 350) : (sliderPos - 700))
+        setSliderPos(mobile ? (sliderPos - 350) : (sliderPos - 700))
       }
       setTimeout(() => {
         if (dir === "left") {
@@ -47,6 +56,26 @@ export default function News() {
       }, 500);
     }
   }
+
+  // const slider = news.map((item, index) => {
+
+  // })
+
+
+  // for (let index = 0; index < news.length; index += 2) {
+  //   slider.push(
+  //     <div className="news__slider_slide">
+  //       <div className="news__left" onClick={() => setPopupMode(true)}>
+  // <img src={`https://api.alliance-dance-club.ru/news/${news._id}/photo`} alt="" />
+  // <h4>{titles[(sliderCount + 2) % titles.length]}</h4>
+  //       </div>
+  //       <div className="news__right" onClick={() => setPopupMode(true)}>
+  //         <img src={`https://api.alliance-dance-club.ru/news/${news._id}/photo`} alt="" />
+  //         <h4>{titles[(sliderCount + 3) % titles.length]}</h4>
+  //       </div>
+  //     </div>
+  //   )
+  // }
 
   return (
     <>
@@ -83,43 +112,14 @@ export default function News() {
 
             :
 
-            <div className="news__slider" style={{ transform: "translateX(" + sliderPos + "px)", transition: sliderTransition }}>
-
-
-              <div className="news__slider_slide">
-                <div className="news__left">
-                  <img src={images.newsImage} alt="" />
-                  <h4>{titles[(sliderCount + 0) % titles.length]}</h4>
-                </div>
-                <div className="news__right">
-                  <img src={images.newsImage} alt="" />
-                  <h4>{titles[(sliderCount + 1) % titles.length]}</h4>
-                </div>
-              </div>
-
-              <div className="news__slider_slide">
-                <div className="news__left" onClick={() => setPopupMode(true)}>
-                  <img src={images.newsImage} alt="" />
-                  <h4>{titles[(sliderCount + 2) % titles.length]}</h4>
-                </div>
-                <div className="news__right" onClick={() => setPopupMode(true)}>
-                  <img src={images.newsImage} alt="" />
-                  <h4>{titles[(sliderCount + 3) % titles.length]}</h4>
-                </div>
-              </div>
-
-              <div className="news__slider_slide">
-                <div className="news__left">
-                  <img src={images.newsImage} alt="" />
-                  <h4>{titles[(sliderCount + 4) % titles.length]}</h4>
-                </div>
-                <div className="news__right">
-                  <img src={images.newsImage} alt="" />
-                  <h4>{titles[(sliderCount + 5) % titles.length]}</h4>
-                </div>
-              </div>
-            </div>
-
+            <ul className="news__slider" style={{ transform: "translateX(" + sliderPos + "px)", transition: sliderTransition }}>
+              {news.map((item, index) => (
+                <li className="news__item" key={item._id} onClick={() => setPopupMode(true)}>
+                  <img src={`https://api.alliance-dance-club.ru/news/${item._id}/photo`} alt="" />
+                  <h4>{item.title}</h4>
+                </li>
+              ))}
+            </ul>
           }
 
           <IoChevronForward onClick={() => handleSlider("right")} className="news__arrow-right"></IoChevronForward>
