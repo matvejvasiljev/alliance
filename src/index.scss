@@ -42,7 +42,7 @@ body {
         }
 
         .logo {
-            background-image: url(../src/logo.jpg);
+            background-image: url(../src/images/logo.jpg);
         }
     }
 
@@ -51,11 +51,11 @@ body {
         display: flex;
 
         &_VK {
-            background-image: url(../src/VK.png);
+            background-image: url(../src/images/VK.png);
         }
 
         &_talant {
-            background-image: url(../src/Talant.png);
+            background-image: url(../src/images/Talant.png);
         }
     }
 
@@ -303,18 +303,18 @@ body {
             margin-right: 0;
             display: inline-block;
             background-size: contain;
-            background-image: url(../src/logo.jpg);
+            background-image: url(../src/images/logo.jpg);
             border-radius: 30px;
             box-sizing: border-box;
         }
 
         .VK {
-            background-image: url(../src/VK.png);
+            background-image: url(../src/images/VK.png);
             border-radius: 0;
         }
 
         .talant {
-            background-image: url(../src/Talant.png);
+            background-image: url(../src/images/Talant.png);
             border-radius: 0;
         }
     }
@@ -370,7 +370,7 @@ body {
             }
         }
 
-        .news__slider_slide{
+        .news__slider_slide {
             width: 350px;
         }
     }

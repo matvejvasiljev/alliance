@@ -1,9 +1,11 @@
 import images from "../../images";
 import { useEffect, useState } from "react";
 import { IoChevronBack, IoChevronForward, IoClose } from "react-icons/io5";
+import { useResize } from "../../utils/resize";
 
 export default function News() {
-  const [mobile, setMobile] = useState(window.matchMedia("(max-width: 600px)").matches)
+  const { typeScreen } = useResize();
+  const [mobile, setMobile] = useState(false);
   const [news, setNews] = useState([])
   useEffect(() => {
     fetch('https://api.alliance-dance-club.ru/news')
@@ -13,6 +15,14 @@ export default function News() {
         console.log(commits);
       })
   }, [])
+
+  useEffect(() => {
+    if (typeScreen === "mobile") {
+      setMobile(true);
+    } else {
+      setMobile(false);
+    }
+  }, [typeScreen]);
 
 
   const [sliderPos, setSliderPos] = useState(0)
