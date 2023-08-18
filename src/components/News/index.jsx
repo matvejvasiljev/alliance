@@ -11,7 +11,7 @@ export default function News() {
     fetch('https://api.alliance-dance-club.ru/news')
       .then(response => response.json())
       .then(commits => {
-        setNews(commits);
+        setNews(commits.concat(commits));
         console.log(commits);
       })
   }, [])
@@ -31,61 +31,52 @@ export default function News() {
 
   const [sliderCount, setSliderCount] = useState(0)
 
-  const [popupMode, setPopupMode] = useState(false)
-  const titles = ["Lorem ipsum 0", "Lorem ipsum 1", "Lorem ipsum 2", "Lorem ipsum 3", "Lorem ipsum 4", "Lorem ipsum 5",]
+  const [popupMode, setPopupMode] = useState(false);
+  const [popupId, setPopupId] = useState(0);
+  const titles = ["Lorem ipsum 0", "Lorem ipsum 1", "Lorem ipsum 2", "Lorem ipsum 3", "Lorem ipsum 4", "Lorem ipsum 5",];
 
   function handleSlider(dir) {
     if (sliderBlocked === false) {
-      let sliderCounter = sliderCount
-      setSliderTransition("0.5s")
-      setSliderBlocked(true)
+      let sliderCounter = sliderCount;
+      setSliderTransition("0.5s");
+      setSliderBlocked(true);
       if (dir === "left") {
-        setSliderPos(mobile ? (sliderPos + 350) : (sliderPos + 700))
+        setSliderPos(mobile ? (sliderPos + 320) : (sliderPos + 640));
       }
       else {
-        setSliderPos(mobile ? (sliderPos - 350) : (sliderPos - 700))
+        setSliderPos(mobile ? (sliderPos - 320) : (sliderPos - 640));
       }
       setTimeout(() => {
+        let rearrangedNews = news;
         if (dir === "left") {
-          sliderCounter = sliderCounter - 2
-          if (sliderCounter < 0) {
-            sliderCounter += 6
+          if (mobile) {
+            rearrangedNews.splice(0, 0, rearrangedNews[rearrangedNews.length - 1]);
+            rearrangedNews.splice(rearrangedNews.length - 2, 1);
           }
+          else {
+            rearrangedNews.splice(0, 0, rearrangedNews[rearrangedNews.length - 2], rearrangedNews[rearrangedNews.length - 1]);
+            rearrangedNews.splice(rearrangedNews.length - 2, 2);
+          }
+          setNews(rearrangedNews);
         }
         else {
-          sliderCounter = sliderCounter + 2
-          if (sliderCounter > 5) {
-            sliderCounter -= 6
+          if (mobile) {
+            rearrangedNews.push(rearrangedNews[0]);
+            rearrangedNews.splice(0, 1);
           }
+          else {
+            rearrangedNews.push(rearrangedNews[0], rearrangedNews[1]);
+            rearrangedNews.splice(0, 2);
+          }
+          setNews(rearrangedNews);
         }
-        setSliderTransition("0s")
-        setSliderPos(0)
-        setSliderBlocked(false)
-        console.log(sliderCounter);
-        setSliderCount(sliderCounter)
+        setSliderTransition("0s");
+        setSliderPos(0);
+        setSliderBlocked(false);
+        setSliderCount(sliderCounter);
       }, 500);
     }
   }
-
-  // const slider = news.map((item, index) => {
-
-  // })
-
-
-  // for (let index = 0; index < news.length; index += 2) {
-  //   slider.push(
-  //     <div className="news__slider_slide">
-  //       <div className="news__left" onClick={() => setPopupMode(true)}>
-  // <img src={`https://api.alliance-dance-club.ru/news/${news._id}/photo`} alt="" />
-  // <h4>{titles[(sliderCount + 2) % titles.length]}</h4>
-  //       </div>
-  //       <div className="news__right" onClick={() => setPopupMode(true)}>
-  //         <img src={`https://api.alliance-dance-club.ru/news/${news._id}/photo`} alt="" />
-  //         <h4>{titles[(sliderCount + 3) % titles.length]}</h4>
-  //       </div>
-  //     </div>
-  //   )
-  // }
 
   return (
     <>
@@ -96,35 +87,23 @@ export default function News() {
 
           {mobile ?
 
-            <div className="news__slider" style={{ transform: "translateX(" + sliderPos + "px)", transition: sliderTransition }}>
-
-              <div className="news__slider_slide">
-                <div className="news__left">
-                  <img src={images.newsImage} alt="" />
-                  <h4>{titles[(sliderCount + 0) % titles.length]}</h4>
-                </div>
-              </div>
-
-              <div className="news__slider_slide">
-                <div className="news__left" onClick={() => setPopupMode(true)}>
-                  <img src={images.newsImage} alt="" />
-                  <h4>{titles[(sliderCount + 2) % titles.length]}</h4>
-                </div>
-              </div>
-
-              <div className="news__slider_slide">
-                <div className="news__left">
-                  <img src={images.newsImage} alt="" />
-                  <h4>{titles[(sliderCount + 4) % titles.length]}</h4>
-                </div>
-              </div>
-            </div>
+            <ul className="news__slider" style={{ transform: "translateX(" + sliderPos + "px)", transition: sliderTransition }}>
+              {news.map((item, index) => (
+                <li className="news__item" key={index} onClick={() => setPopupMode(true)}>
+                  <img src={`https://api.alliance-dance-club.ru/news/${item._id}/photo`} alt="" />
+                  <h4>{item.title}</h4>
+                </li>
+              ))}
+            </ul>
 
             :
 
             <ul className="news__slider" style={{ transform: "translateX(" + sliderPos + "px)", transition: sliderTransition }}>
               {news.map((item, index) => (
-                <li className="news__item" key={item._id} onClick={() => setPopupMode(true)}>
+                <li className="news__item" key={index} onClick={() => {
+                  setPopupMode(true);
+                  setPopupId(index);
+                }}>
                   <img src={`https://api.alliance-dance-club.ru/news/${item._id}/photo`} alt="" />
                   <h4>{item.title}</h4>
                 </li>
@@ -134,7 +113,7 @@ export default function News() {
 
           <IoChevronForward onClick={() => handleSlider("right")} className="news__arrow-right"></IoChevronForward>
         </div>
-      </div>
+      </div >
 
       {popupMode
         &&
@@ -142,10 +121,10 @@ export default function News() {
           <div className="newsPopup__BG" onClick={() => setPopupMode(false)}></div>
           <div className="newsPopup__menu">
             <div className="newsPopup__menu_container">
-              <h2>News 1</h2>
-              <p>lLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-              <p>01.01.2023</p>
-              <img src={images.newsImage} alt="" />
+              <h2>{news[popupId].title}</h2>
+              <p>{news[popupId].message}</p>
+              <p>{news[popupId].publishedAt}</p>
+              <img src={`https://api.alliance-dance-club.ru/news/${news[popupId]._id}/photo`} alt="" />
               <IoClose className="newsPopup__close" onClick={() => setPopupMode(false)}></IoClose>
             </div>
           </div>

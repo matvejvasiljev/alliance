@@ -93,6 +93,8 @@ body {
 .main .news {
   background-color: #ccc;
   margin-top: 60px;
+  position: relative;
+  z-index: 2;
 }
 .main .news__container {
   display: flex;
@@ -109,7 +111,7 @@ body {
   position: absolute;
   left: 0;
   width: 40px;
-  height: 100%;
+  height: 300px;
   z-index: 1;
   cursor: pointer;
 }
@@ -121,7 +123,7 @@ body {
   position: absolute;
   right: 0;
   width: 40px;
-  height: 100%;
+  height: 300px;
   z-index: 1;
   cursor: pointer;
 }
@@ -134,6 +136,7 @@ body {
   border-radius: 15px;
   width: 260px;
   height: 300px;
+  margin: 0 30px;
   flex-direction: column;
   justify-content: space-between;
   margin-bottom: 30px;
@@ -209,9 +212,11 @@ body {
 }
 .main .newsPopup__menu_container img {
   border-radius: 0px 0px 15px 15px;
-  width: 500px;
-  height: 350px;
+  width: 100%;
+  max-height: 350px;
   display: block;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 .main .coaches__container {
   display: flex;
@@ -233,7 +238,7 @@ body {
 }
 .main .coaches__container .coach img {
   border-radius: 15px 15px 0px 0px;
-  width: 275px;
+  width: 100%;
   height: 275px;
   -o-object-fit: cover;
      object-fit: cover;
@@ -300,12 +305,40 @@ body {
   }
   .main .info img {
     position: absolute;
-    top: 75px;
-    left: 10%;
-    width: 80%;
+    top: auto;
+    bottom: 0;
+    left: 15%;
+    width: 70%;
     opacity: 25%;
   }
-  .main .news__slider_slide {
-    width: 350px;
+  .main .news {
+    margin-top: 0;
+  }
+  .main .coaches__container {
+    display: flex;
+    flex-direction: column;
+  }
+  .main .coaches__container .coach {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 75%;
+    margin: auto;
+  }
+  .main .coaches__container .coach:first-child {
+    margin-bottom: 30px;
+  }
+  .footer .container .social {
+    flex-direction: column;
+  }
+  .footer .container .social__left {
+    justify-content: center;
+  }
+  .footer .container .social__left .logo {
+    margin: 20px;
+  }
+  .footer .container .social__right {
+    padding: 0;
+    text-align: center;
   }
 }/*# sourceMappingURL=index.css.map */
