@@ -120,14 +120,6 @@ body {
 
         &__slider {
             display: flex;
-            // transition: 0.5s;
-
-            // &_slide {
-            //     display: flex;
-            //     flex-direction: row;
-            //     justify-content: space-evenly;
-            //     width: 700px;
-            // }
         }
 
         &__arrow-left {
@@ -377,6 +369,18 @@ body {
 
         .news {
             margin-top: 0;
+
+            &__slider_container {
+                transform: translateX(215px);
+            }
+
+            &__item {
+                margin: 0 85px;
+            }
+        }
+
+        .newsPopup__menu {
+            width: 100%;
         }
 
         .coaches__container {
@@ -387,7 +391,7 @@ body {
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
-                width: 75%;
+                width: 260px;
                 margin: auto;
 
                 &:first-child {
@@ -404,6 +408,7 @@ body {
 
                 &__left {
                     justify-content: center;
+
                     .logo {
                         margin: 20px;
                     }
@@ -418,4 +423,3 @@ body {
         }
     }
 }
-

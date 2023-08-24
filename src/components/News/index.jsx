@@ -41,10 +41,10 @@ export default function News() {
       setSliderTransition("0.5s");
       setSliderBlocked(true);
       if (dir === "left") {
-        setSliderPos(mobile ? (sliderPos + 320) : (sliderPos + 640));
+        setSliderPos(mobile ? (sliderPos + 430) : (sliderPos + 640));
       }
       else {
-        setSliderPos(mobile ? (sliderPos - 320) : (sliderPos - 640));
+        setSliderPos(mobile ? (sliderPos - 430) : (sliderPos - 640));
       }
       setTimeout(() => {
         let rearrangedNews = news;
@@ -86,15 +86,19 @@ export default function News() {
           <IoChevronBack onClick={() => handleSlider("left")} className="news__arrow-left"></IoChevronBack>
 
           {mobile ?
-
-            <ul className="news__slider" style={{ transform: "translateX(" + sliderPos + "px)", transition: sliderTransition }}>
-              {news.map((item, index) => (
-                <li className="news__item" key={index} onClick={() => setPopupMode(true)}>
-                  <img src={`https://api.alliance-dance-club.ru/news/${item._id}/photo`} alt="" />
-                  <h4>{item.title}</h4>
-                </li>
-              ))}
-            </ul>
+            <div className="news__slider_container">
+              <ul className="news__slider" style={{ transform: "translateX(" + sliderPos + "px)", transition: sliderTransition }}>
+                {news.map((item, index) => (
+                  <li className="news__item" key={index} onClick={() => {
+                    setPopupMode(true);
+                    setPopupId(index);
+                  }}>
+                    <img src={`https://api.alliance-dance-club.ru/news/${item._id}/photo`} alt="" />
+                    <h4>{item.title}</h4>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
             :
 
