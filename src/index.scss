@@ -43,6 +43,7 @@ body {
 
         .logo {
             background-image: url(../src/images/logo.jpg);
+            border-radius: 50%;
         }
     }
 
@@ -66,6 +67,10 @@ body {
         display: flex;
         background-position: center;
         background-size: contain;
+
+        &:hover {
+            filter: brightness(1.2);
+        }
     }
 }
 
@@ -77,7 +82,6 @@ body {
 .main {
     background-color: #eee;
     box-shadow: 0px 0px 250px rgba(0, 0, 0, 0.3);
-    padding-top: 70px;
 
     h2 {
         text-align: center;
@@ -89,6 +93,7 @@ body {
 
     .info {
         position: relative;
+        padding-top: 70px;
 
         p {
             width: 350px;
@@ -98,7 +103,7 @@ body {
 
         img {
             position: absolute;
-            top: 50px;
+            top: 120px;
             right: 50px;
             width: 200px;
         }
@@ -244,7 +249,7 @@ body {
                 img {
                     border-radius: 0px 0px 15px 15px;
                     width: 100%;
-                    max-height: 350px;
+                    max-height: 800px;
                     display: block;
                     object-fit: contain;
                 }
@@ -261,7 +266,6 @@ body {
 
             .coach {
                 width: 275px;
-                height: 350px;
                 background: #D9D9D9;
                 border-radius: 15px;
 
@@ -300,7 +304,7 @@ body {
             display: inline-block;
             background-size: contain;
             background-image: url(../src/images/logo.jpg);
-            border-radius: 30px;
+            border-radius: 50%;
             box-sizing: border-box;
         }
 
@@ -312,6 +316,10 @@ body {
         .talant {
             background-image: url(../src/images/Talant.png);
             border-radius: 0;
+        }
+
+        *:hover {
+            filter: brightness(1.2);
         }
     }
 
@@ -376,11 +384,12 @@ body {
 
             &__item {
                 margin: 0 85px;
+                margin-bottom: 30px;
             }
         }
 
         .newsPopup__menu {
-            width: 100%;
+            width: 95%;
         }
 
         .coaches__container {
@@ -416,8 +425,8 @@ body {
 
                 &__right {
                     padding: 0;
-                    // margin: auto;
                     text-align: center;
+                    margin-bottom: 20px;
                 }
             }
         }

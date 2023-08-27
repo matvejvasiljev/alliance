@@ -7,9 +7,9 @@ export default function Header() {
       <div className="container">
         <div className="header__left">
           <Link className="logo" to=""></Link>
-          <a href="#info" className="header__left_link">Информация</a>
-          <a href="#news" className="header__left_link">Новости</a>
-          <a href="#coaches" className="header__left_link">Педагоги</a>
+          <a href="#/" className="header__left_link" onClick={() => window.scrollTo({top: 0, left: 0, behavior: "smooth"})}>Информация</a>
+          <a href="#/" className="header__left_link" onClick={() => window.scrollTo({top: 361, left: 0, behavior: "smooth"})}>Новости</a>
+          <a href="#/" className="header__left_link" onClick={() => window.scrollTo({top: 788, left: 0, behavior: "smooth"})}>Педагоги</a>
         </div>
 
         <div className="header__right"> 

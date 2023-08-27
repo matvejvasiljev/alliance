@@ -127,7 +127,7 @@ export default function News() {
             <div className="newsPopup__menu_container">
               <h2>{news[popupId].title}</h2>
               <p>{news[popupId].message}</p>
-              <p>{news[popupId].publishedAt}</p>
+              <p>{news[popupId].publishedAt.split("T")[0].split("-").reverse().join(".")}</p>
               <img src={`https://api.alliance-dance-club.ru/news/${news[popupId]._id}/photo`} alt="" />
               <IoClose className="newsPopup__close" onClick={() => setPopupMode(false)}></IoClose>
             </div>
