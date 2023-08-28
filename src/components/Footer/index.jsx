@@ -13,11 +13,15 @@ export default function Footer() {
                         </div>
 
                         <div className="social__right">
-                            <p>Lorem ipsum dolor sit amet</p>
+                            <p>Ленинградский проспект, 45А</p>
                             <p>+7 (000) 000 00-00</p>
                         </div>
                     </div>
-                    <iframe title="yandex_map" src="https://yandex.ru/map-widget/v1/?ll=39.997205%2C57.709966&mode=poi&poi%5Bpoint%5D=39.893809%2C57.626562&poi%5Buri%5D=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1MzA1NzI0MRIg0KDQvtGB0YHQuNGPLCDQr9GA0L7RgdC70LDQstC70YwiCg1Ekx9CFZmBZkI%2C&z=11.2" width="700" height="300" frameBorder="0" allowFullScreen={true} style={{ position: "relative" }} />
+                    <iframe
+                        title="yandex-map-club-dance"
+                        src="https://yandex.ru/map-widget/v1/?ll=39.796939%2C57.678110&mode=whatshere&whatshere%5Bpoint%5D=39.795836%2C57.678437&whatshere%5Bzoom%5D=17&z=17"
+                        width="700" height="300" frameBorder="0" allowFullScreen={true} style={{ position: "relative" }}
+                    />
                 </div>
             </div>
         </>
